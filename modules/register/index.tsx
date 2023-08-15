@@ -4,8 +4,13 @@ import * as Yup from "yup";
 import { AUTHPAGE, PROFILE_ICON } from "../../utils/IMAGE_PATHS";
 import {
   ALREADY_MEMBER,
+  EMAIL,
+  FULL_NAME,
   INPUT_HEADING,
+  PASSWORD,
+  PHONE,
   REGISTER_TXT,
+  REPEAT_PASSWORD,
   TERMS_CONDITION,
 } from "./constant";
 import styles from "./register.module.scss";
@@ -45,7 +50,6 @@ const Register = () => {
             className={`d-flex justify-content-center mt-4 ${styles.headingContainer}`}
           >
             <div className={styles.heading}>{INPUT_HEADING}</div>
-            {/* <div className={`${styles.headingTxt}`}>{INPUT_HEADING_TEXT}</div> */}
           </div>
 
           <hr />
@@ -92,7 +96,7 @@ const Register = () => {
               <Form>
                 <label>
                   <Field name="name" type="text" />
-                  <div className={styles.labelText}>Full Name</div>
+                  <div className={styles.labelText}>{FULL_NAME}</div>
                   <div className={styles.errorTxt}>
                     <ErrorMessage name="name" />
                   </div>
@@ -100,7 +104,7 @@ const Register = () => {
 
                 <label>
                   <Field name="email" type="text" />
-                  <div className={styles.labelText}>Email</div>
+                  <div className={styles.labelText}>{EMAIL}</div>
                   <div className={styles.errorTxt}>
                     <ErrorMessage name="email" />
                   </div>
@@ -108,7 +112,7 @@ const Register = () => {
 
                 <label>
                   <Field name="phone" type="number" />
-                  <div className={styles.labelText}>Phone</div>
+                  <div className={styles.labelText}>{PHONE}</div>
                   <div className={styles.errorTxt}>
                     <ErrorMessage name="phone" />
                   </div>
@@ -116,7 +120,7 @@ const Register = () => {
 
                 <label>
                   <Field name="password" type="text" />
-                  <div className={styles.labelText}>Password</div>
+                  <div className={styles.labelText}>{PASSWORD}</div>
                   <div className={styles.errorTxt}>
                     <ErrorMessage name="password" />
                   </div>
@@ -124,7 +128,7 @@ const Register = () => {
 
                 <label>
                   <Field name="repeat_password" type="text" />
-                  <div className={styles.labelText}>Repeat Password</div>
+                  <div className={styles.labelText}>{REPEAT_PASSWORD}</div>
                   <div className={styles.errorTxt}>
                     <ErrorMessage name="repeat_password" />
                   </div>
