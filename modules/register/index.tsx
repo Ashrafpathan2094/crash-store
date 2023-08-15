@@ -5,12 +5,26 @@ import { AUTHPAGE, PROFILE_ICON } from "../../utils/IMAGE_PATHS";
 import {
   ALREADY_MEMBER,
   INPUT_HEADING,
-  INPUT_HEADING_TEXT,
   REGISTER_TXT,
   TERMS_CONDITION,
 } from "./constant";
 import styles from "./register.module.scss";
+import { RegisterUserReq } from "@/constants/types";
+import { RegisterUser } from "@/service/apiCalls";
 const Register = () => {
+  const formSubmit = async (reqBody: RegisterUserReq) => {
+    reqBody.phone = reqBody.phone.toString();
+    try {
+      const resp = await RegisterUser(reqBody);
+      if (resp.status === 201) {
+        console.log("Account has been created");
+      } else {
+        console.log("There was an error in creating your account");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <>
       <div className={` ${styles.wrapper}`}>
@@ -27,22 +41,25 @@ const Register = () => {
               />
             </a>
           </div>
-          <div className={`d-flex mt-4 ms-5 ${styles.headingContainer}`}>
+          <div
+            className={`d-flex justify-content-center mt-4 ${styles.headingContainer}`}
+          >
             <div className={styles.heading}>{INPUT_HEADING}</div>
-            <div className={`${styles.headingTxt}`}>{INPUT_HEADING_TEXT}</div>
+            {/* <div className={`${styles.headingTxt}`}>{INPUT_HEADING_TEXT}</div> */}
           </div>
 
           <hr />
           <div className={styles.form}>
             <Formik
               initialValues={{
-                Name: "",
+                name: "",
                 email: "",
+                phone: "",
                 password: "",
-                passwordRepeat: "",
+                repeat_password: "",
               }}
               validationSchema={Yup.object({
-                Name: Yup.string()
+                name: Yup.string()
                   .min(3, "Must be at least 3 characters")
                   .max(30, "Must be 15 characters or less")
                   .required("Required"),
@@ -58,6 +75,7 @@ const Register = () => {
                   .matches(/^\d{10}$/, "Must be a 10-digit number")
                   .required("Required"),
                 password: Yup.string()
+                  .min(3, "Must be at least 3 characters")
                   .matches(
                     /^[a-zA-Z0-9]{3,30}$/,
                     "Password must contain only letters and numbers"
@@ -68,18 +86,15 @@ const Register = () => {
                   .required("Required"),
               })}
               onSubmit={(values, { setSubmitting }) => {
-                setTimeout(() => {
-                  alert(JSON.stringify(values, null, 2));
-                  setSubmitting(false);
-                }, 400);
+                formSubmit(values);
               }}
             >
               <Form>
                 <label>
-                  <Field name="Name" type="text" />
+                  <Field name="name" type="text" />
                   <div className={styles.labelText}>Full Name</div>
                   <div className={styles.errorTxt}>
-                    <ErrorMessage name="Name" />
+                    <ErrorMessage name="name" />
                   </div>
                 </label>
 
@@ -120,9 +135,7 @@ const Register = () => {
                 >
                   <div className={`d-flex ${styles.terms}`}>
                     <input type="checkbox" className="mt-1" />
-                    <div className="ms-2">
-                      {TERMS_CONDITION}
-                    </div>
+                    <div className="ms-2">{TERMS_CONDITION}</div>
                   </div>
                   <button type="submit">{REGISTER_TXT}</button>
                 </div>
