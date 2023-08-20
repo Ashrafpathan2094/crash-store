@@ -1,7 +1,16 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import Image from "next/image";
+import { useRouter } from "next/router";
+import { useState } from "react";
 import * as Yup from "yup";
-import { AUTHPAGE, PROFILE_ICON } from "../../utils/IMAGE_PATHS";
+import { RegisterUserReq } from "../../constants/types";
+import { RegisterUser } from "../../service/apiCalls";
+import {
+  AUTHPAGE,
+  EYE_CLOSE,
+  EYE_OPEN,
+  PROFILE_ICON,
+} from "../../utils/IMAGE_PATHS";
 import {
   ALREADY_MEMBER,
   EMAIL,
@@ -13,13 +22,26 @@ import {
   REPEAT_PASSWORD,
   TERMS_CONDITION,
 } from "./constant";
+
+import { Loader } from "../../components/Loader";
 import styles from "./register.module.scss";
-import { RegisterUserReq } from "@/constants/types";
-import { RegisterUser } from "@/service/apiCalls";
 const Register = () => {
+  const [loading, setLoading] = useState(false);
+
+  const [passwordEye, setPasswordEye] = useState(true);
+  console.log("passwordEye", passwordEye);
+
+  const router = useRouter();
+
+  const passowrdEyeClick = () => {
+    console.log("here");
+
+    setPasswordEye(!passwordEye);
+  };
   const formSubmit = async (reqBody: RegisterUserReq) => {
     reqBody.phone = reqBody.phone.toString();
     try {
+      setLoading(true);
       const resp = await RegisterUser(reqBody);
       if (resp.status === 201) {
         console.log("Account has been created");
@@ -28,31 +50,44 @@ const Register = () => {
       }
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoading(false);
     }
+  };
+
+  const redirectLogin = () => {
+    setLoading(true);
+    router.push("/signin");
   };
   return (
     <>
       <div className={` ${styles.wrapper}`}>
+        {loading && <Loader />}
+
         <div className={`float-start ${styles.formContainer}`}>
-          <div className={`mt-5 ${styles.memberContainer}`}>
-            <a href="">
-              {ALREADY_MEMBER}
-              <Image
-                src={PROFILE_ICON}
-                alt="profile-icon"
-                width={16}
-                height={16}
-                className="ms-2"
-              />
-            </a>
+          <div
+            className={`mt-5 ${styles.memberContainer}`}
+            onClick={redirectLogin}
+          >
+            {ALREADY_MEMBER}
+            <Image
+              src={PROFILE_ICON}
+              alt="profile-icon"
+              width={16}
+              height={16}
+              className="ms-2"
+            />
           </div>
           <div
             className={`d-flex justify-content-center mt-4 ${styles.headingContainer}`}
           >
             <div className={styles.heading}>{INPUT_HEADING}</div>
           </div>
-
-          <hr />
+          <div
+            className={`d-flex justify-content-center align-items-center ${styles.horizontalContainer}`}
+          >
+            <hr className={styles.horizontalLine} />
+          </div>
           <div className={styles.form}>
             <Formik
               initialValues={{
@@ -120,6 +155,14 @@ const Register = () => {
 
                 <label>
                   <Field name="password" type="text" />
+                  {/* <Image
+                    src={passwordEye ? EYE_OPEN : EYE_CLOSE}
+                    alt="profile-icon"
+                    width={30}
+                    height={30}
+                    className="ms-2"
+                    onClick={passowrdEyeClick}
+                  /> */}
                   <div className={styles.labelText}>{PASSWORD}</div>
                   <div className={styles.errorTxt}>
                     <ErrorMessage name="password" />
