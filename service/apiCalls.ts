@@ -12,18 +12,12 @@ export const RegisterUser = async (
   reqBody: RegisterUserReq
 ): Promise<APIResponse<UserResp>> => {
   const response = await axios.post(REGISTER_PATH, reqBody);
-
-  console.log(response);
-
-  return response.json() as Promise<APIResponse<UserResp>>;
+  return response as Promise<APIResponse<UserResp>>;
 };
 
 export const LoginUser = async (
   reqBody: LoginUserReq
 ): Promise<APIResponse<UserResp>> => {
   const response = await axios.post(LOGIN_PATH, reqBody);
-
-  console.log(response);
-
-  return response.json() as Promise<APIResponse<UserResp>>;
+  return response as Promise<APIResponse<UserResp>>;
 };

@@ -25,7 +25,8 @@ const Login = () => {
       setLoading(true);
       const resp = await LoginUser(reqBody);
       if (resp.status === 201) {
-        console.log("Account has been created");
+        localStorage.setItem("crash-Token", resp.data.token);
+        router.push("/home");
       } else {
         console.log("There was an error in creating your account");
       }
