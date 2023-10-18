@@ -1,4 +1,4 @@
-import Login from "../modules/login";
+import Login from "../../modules/login";
 export default function SignIn() {
   return (
     <>

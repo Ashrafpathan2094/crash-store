@@ -1,4 +1,4 @@
-import Register from "../modules/register";
+import Register from "../../modules/register";
 export default function Signup() {
   return (
     <>
