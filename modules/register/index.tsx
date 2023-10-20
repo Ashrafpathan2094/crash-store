@@ -181,9 +181,13 @@ const Register = () => {
                 <div
                   className={`d-flex justify-content-evenly mt-5 ${styles.submitContainer}`}
                 >
-                  <div className={`d-flex ${styles.terms}`}>
+                  <div
+                    className={`d-flex justify-content-center align-items-center ${styles.terms}`}
+                  >
                     <input type="checkbox" className="mt-1" />
-                    <div className="ms-2">{TERMS_CONDITION}</div>
+                    <div className={`ms-2 ${styles.termsCondition}`}>
+                      {TERMS_CONDITION}
+                    </div>
                   </div>
                   <button type="submit">{REGISTER_TXT}</button>
                 </div>

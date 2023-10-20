@@ -116,14 +116,16 @@
       }
       .submitContainer {
         .terms {
-          input {
-            width: 15px;
-            height: 15px;
-          }
-          a {
-            font-weight: 400;
-            font-size: 0.875rem;
-            text-decoration: none;
+          .termsCondition {
+            input {
+              width: 15px;
+              height: 15px;
+            }
+            a {
+              font-weight: 400;
+              font-size: 0.875rem;
+              text-decoration: none;
+            }
           }
         }
         button {
@@ -154,7 +156,7 @@
   }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 769px) {
   .wrapper {
     .formContainer {
       .headingContainer {
@@ -166,31 +168,92 @@
         }
       }
     }
+    .bannerImg {
+      display: none;
+    }
+
+    .formContainer {
+      width: 100%;
+    }
   }
 }
 
-//TODO
-// @media (max-width: 425px) {
-//   .wrapper {
-//     .formContainer {
-//       .from {
-//         input {
-//           width: 80%;
-//         }
-//       }
-//     }
-//   }
-// }
+@media (max-width: 426px) {
+  .wrapper {
+    .formContainer {
+      width: 100%;
+      .memberContainer {
+        margin: 0 1rem 0 0;
+        text-align: right;
+      }
+      .headingContainer {
+        .heading {
+          font-size: 1rem;
+        }
+      }
+      .form {
+        label {
+          input {
+            width: 70%;
+          }
+          input:focus {
+            width: 100%;
+          }
+        }
+
+        .submitContainer {
+          display: block !important;
+          button {
+            margin-top: 1rem;
+          }
+        }
+      }
+    }
+    .bannerImg {
+      display: none;
+    }
+  }
+}
 
 @media (max-width: 375px) {
   .wrapper {
     .formContainer {
-      .headingContainer {
-        .heading {
-          font-weight: 500;
-          line-height: 68px;
-          font-size: 2rem;
-          padding: 0% 0% 0% 0%;
+      .form {
+        label {
+          input {
+            width: 80%;
+          }
+          input:focus {
+            width: 100%;
+          }
+        }
+
+        .submitContainer {
+          .terms {
+            font-size: 0.8rem;
+          }
+          button {
+            font-size: 0.8rem;
+            width: 5rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 321px) {
+  .wrapper {
+    .formContainer {
+      .form {
+        padding: 0;
+        label {
+          input {
+            width: 70%;
+          }
+          input:focus {
+            width: 95%;
+          }
         }
       }
     }
