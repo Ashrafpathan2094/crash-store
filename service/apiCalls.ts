@@ -28,6 +28,6 @@ export const LoginUser = async (
 };
 
 export const getProducts = async (reqBody: any) => {
-  const response = await axiosInstance(GET_PRODUCTS, reqBody);
+  const response = await axiosInstance.post(GET_PRODUCTS, reqBody);
   return response;
 };
