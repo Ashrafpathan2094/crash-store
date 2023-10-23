@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import * as Yup from "yup";
 import { LoginUser } from "../../service/apiCalls";
-import { LOGIN_PAGE_BANNER } from "../../utils/IMAGE_PATHS";
+import { LOGIN_PAGE_BANNER } from "../../constants/IMAGE_PATHS";
 import {
   EMAIL,
   HEADING_TXT,

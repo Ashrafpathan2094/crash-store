@@ -10,7 +10,7 @@ import {
   EYE_CLOSE,
   EYE_OPEN,
   PROFILE_ICON,
-} from "../../utils/IMAGE_PATHS";
+} from "../../constants/IMAGE_PATHS";
 import {
   ALREADY_MEMBER,
   EMAIL,

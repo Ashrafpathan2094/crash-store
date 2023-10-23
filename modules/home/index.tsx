@@ -1,7 +1,7 @@
 import CustomNavbar from "@/components/Navbar";
 import { getProducts } from "@/service/apiCalls";
-import React, { useEffect } from "react";
-
+import { useEffect } from "react";
+import styles from "./home.module.scss";
 const LandingPage = () => {
   const getAllProduct = async () => {
     try {
@@ -20,6 +20,9 @@ const LandingPage = () => {
   return (
     <>
       <CustomNavbar />
+      <div className={styles.example}>
+        asd
+      </div>
     </>
   );
 };
