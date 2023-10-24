@@ -8,9 +8,8 @@ axiosInstance.interceptors.request.use(
   async function (config) {
     // Do something before request is sent
 
-    // Check if a token is provided in the request config, otherwise use the one from local storage
-    const token =
-      config.headers["Authorization"] || localStorage.getItem("crash-Token");
+    // Check if a token is in local storage
+    const token = localStorage.getItem("crash-Token");
 
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
@@ -35,7 +34,7 @@ axiosInstance.interceptors.response.use(
     if (error?.response?.status === 401) {
       // Unauthorized: Clear local storage and redirect to login page
       localStorage.removeItem("crash-Token");
-      void Router.push("/signin");
+      void Router.push(LOGIN_PATH_UI);
     }
     return Promise.reject(error);
   }
