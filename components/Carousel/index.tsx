@@ -34,7 +34,7 @@ const items = [
   },
 ];
 
-function Example(args) {
+function Example(args:any) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [animating, setAnimating] = useState(false);
 
@@ -50,7 +50,7 @@ function Example(args) {
     setActiveIndex(nextIndex);
   };
 
-  const goToIndex = (newIndex) => {
+  const goToIndex = (newIndex:number) => {
     if (animating) return;
     setActiveIndex(newIndex);
   };
