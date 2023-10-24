@@ -130,3 +130,68 @@
     }
   }
 }
+
+@media (max-width: 769px) {
+  .loginWrapper {
+    .bannerImg {
+      display: none;
+    }
+
+    .loginFormContainer {
+      width: 100%;
+      .heading {
+        font-weight: 500;
+        line-height: 68px;
+        font-size: 2rem;
+        margin-top: 0%;
+      }
+      .headingTxt {
+        line-height: 100%;
+        margin: 2% 0 1% 10%;
+      }
+    }
+  }
+}
+
+@media (max-width: 426px) {
+  .loginWrapper {
+    .loginFormContainer {
+      .headingTxt {
+        line-height: 120%;
+      }
+      .form {
+        label {
+          input {
+            width: 70%;
+          }
+          input:focus {
+            width: 100%;
+          }
+        }
+
+        .registerTxt {
+          margin: 2% 0 0 0 !important;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 321px) {
+  .loginWrapper {
+    .form {
+      .submitContainer {
+        button {
+          font-size: 0.9rem;
+          width: 5rem;
+        }
+      }
+      .registerTxt {
+        font-size: 0.8rem;
+      }
+      .registerLink {
+        font-size: 0.8rem;
+      }
+    }
+  }
+}

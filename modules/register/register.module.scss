@@ -144,21 +144,13 @@
   }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 769px) {
   .wrapper {
     .bannerImg {
       display: none;
     }
-
     .formContainer {
       width: 100%;
-    }
-  }
-}
-
-@media (max-width: 769px) {
-  .wrapper {
-    .formContainer {
       .headingContainer {
         .heading {
           font-weight: 500;
@@ -168,20 +160,12 @@
         }
       }
     }
-    .bannerImg {
-      display: none;
-    }
-
-    .formContainer {
-      width: 100%;
-    }
   }
 }
 
 @media (max-width: 426px) {
   .wrapper {
     .formContainer {
-      width: 100%;
       .memberContainer {
         margin: 0 1rem 0 0;
         text-align: right;
@@ -208,9 +192,6 @@
           }
         }
       }
-    }
-    .bannerImg {
-      display: none;
     }
   }
 }
