@@ -16,6 +16,7 @@ import {
   REGISTER_TXT,
 } from "./constant";
 import styles from "./login.module.scss";
+import { SIGNUP_PATH_UI } from "@/constants/uiPaths";
 
 const Login = () => {
   const router = useRouter();
@@ -39,7 +40,7 @@ const Login = () => {
 
   const redirectRegister = () => {
     setLoading(true);
-    router.push("/signup");
+    router.push(SIGNUP_PATH_UI);
   };
   return (
     <>

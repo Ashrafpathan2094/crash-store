@@ -25,6 +25,7 @@ import {
 
 import { Loader } from "../../components/Loader";
 import styles from "./register.module.scss";
+import { LOGIN_PATH_UI } from "@/constants/uiPaths";
 const Register = () => {
   const [loading, setLoading] = useState(false);
 
@@ -58,7 +59,7 @@ const Register = () => {
 
   const redirectLogin = () => {
     setLoading(true);
-    router.push("/signin");
+    router.push(LOGIN_PATH_UI);
   };
   return (
     <>
