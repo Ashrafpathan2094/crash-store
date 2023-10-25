@@ -1,11 +1,11 @@
 import { Loader } from "@/components/Loader";
 import { LoginUserReq } from "@/constants/types";
-import { SIGNUP_PATH_UI } from "@/constants/uiPaths";
+import { HOME_PATH_UI, SIGNUP_PATH_UI } from "@/constants/uiPaths";
 import { EyeImg, passwordType } from "@/utils/utils";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import * as Yup from "yup";
 import { LOGIN_PAGE_BANNER } from "../../constants/IMAGE_PATHS";
 import { LoginUser } from "../../service/apiCalls";
@@ -49,7 +49,15 @@ const Login = () => {
   const changeEye = () => {
     setEye(!Eye);
   };
-
+  useEffect(() => {
+    setLoading(true);
+    const token = localStorage.getItem("crash-Token");
+    if (token) {
+      router.push(HOME_PATH_UI);
+    } else {
+      setLoading(false);
+    }
+  }, [router]);
   return (
     <>
       {loading && <Loader />}

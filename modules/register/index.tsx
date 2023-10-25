@@ -1,7 +1,7 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import * as Yup from "yup";
 import { AUTHPAGE, PROFILE_ICON } from "../../constants/IMAGE_PATHS";
 import { RegisterUserReq } from "../../constants/types";
@@ -18,7 +18,7 @@ import {
   TERMS_CONDITION,
 } from "./constant";
 
-import { LOGIN_PATH_UI } from "@/constants/uiPaths";
+import { HOME_PATH_UI, LOGIN_PATH_UI } from "@/constants/uiPaths";
 import { EyeImg, passwordType } from "@/utils/utils";
 import { Loader } from "../../components/Loader";
 import styles from "./register.module.scss";
@@ -59,6 +59,15 @@ const Register = () => {
     setLoading(true);
     router.push(LOGIN_PATH_UI);
   };
+  useEffect(() => {
+    setLoading(true);
+    const token = localStorage.getItem("crash-Token");
+    if (token) {
+      router.push(HOME_PATH_UI);
+    } else {
+      setLoading(false);
+    }
+  }, [router]);
   return (
     <>
       <div className={` ${styles.wrapper}`}>
