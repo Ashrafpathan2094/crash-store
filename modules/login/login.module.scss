@@ -59,6 +59,12 @@
           transform: translateY(-34px);
           transition: all 0.3s;
         }
+        .passwordInput {
+          width: 90%;
+        }
+        .passwordInput:focus {
+          width: 100%;
+        }
         input {
           background-color: transparent;
           border: 0;
