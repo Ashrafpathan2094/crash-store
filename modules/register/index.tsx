@@ -154,7 +154,7 @@ const Register = () => {
                 </label>
 
                 <div className="d-flex justify-content-center me-2">
-                  <label>
+                  <label className={styles.passwordLabel}>
                     <Field
                       name="password"
                       type={passwordType(passwordEye)}
@@ -176,7 +176,7 @@ const Register = () => {
                 </div>
 
                 <div className="d-flex justify-content-center me-2">
-                  <label>
+                  <label className={styles.passwordLabel}>
                     <Field
                       name="repeat_password"
                       type={passwordType(repeatPasswordEye)}

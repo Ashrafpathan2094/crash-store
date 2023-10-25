@@ -38,6 +38,12 @@
     .form {
       text-align: center;
       padding: 30px;
+      .eye {
+        cursor: pointer;
+      }
+      .passwordLabel {
+        width: 53%;
+      }
       label {
         display: block;
         letter-spacing: 4px;
@@ -166,6 +172,9 @@
         line-height: 120%;
       }
       .form {
+        .passwordLabel {
+          width: 75%;
+        }
         label {
           input {
             width: 70%;
@@ -185,18 +194,23 @@
 
 @media (max-width: 321px) {
   .loginWrapper {
-    .form {
-      .submitContainer {
-        button {
-          font-size: 0.9rem;
-          width: 5rem;
+    .loginFormContainer {
+      .form {
+        .passwordLabel {
+          width: 65%;
         }
-      }
-      .registerTxt {
-        font-size: 0.8rem;
-      }
-      .registerLink {
-        font-size: 0.8rem;
+        .submitContainer {
+          button {
+            font-size: 0.9rem;
+            width: 5rem;
+          }
+        }
+        .registerTxt {
+          font-size: 0.8rem;
+        }
+        .registerLink {
+          font-size: 0.8rem;
+        }
       }
     }
   }

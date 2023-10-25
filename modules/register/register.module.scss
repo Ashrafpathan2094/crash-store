@@ -47,6 +47,10 @@
       text-align: center;
       padding: 30px;
       .eye {
+        cursor: pointer;
+      }
+      .passwordLabel{
+        width: 50%;
       }
       label {
         display: block;

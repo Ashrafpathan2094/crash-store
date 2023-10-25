@@ -100,7 +100,7 @@ const Login = () => {
                 </label>
 
                 <div className="d-flex justify-content-center">
-                  <label>
+                  <label className={styles.passwordLabel}>
                     <Field
                       name="password"
                       type={passwordType(Eye)}
@@ -116,7 +116,7 @@ const Login = () => {
                     alt="Eye-Icon"
                     height={20}
                     width={20}
-                    className="mt-5"
+                    className={`mt-5 ${styles.eye}`}
                     onClick={changeEye}
                   />
                 </div>
