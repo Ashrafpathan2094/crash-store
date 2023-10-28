@@ -1,61 +1,39 @@
-import {
-  CAROUSEL_BANNER_1,
-  CAROUSEL_BANNER_2,
-  CAROUSEL_BANNER_3,
-} from "@/constants/IMAGE_PATHS";
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   Carousel,
-  CarouselItem,
+  CarouselCaption,
   CarouselControl,
   CarouselIndicators,
-  CarouselCaption,
+  CarouselItem,
 } from "reactstrap";
 
 import styles from "./carousel.module.scss";
-const items = [
-  {
-    src: CAROUSEL_BANNER_1,
-    altText: "Slide 1",
-    caption: "Slide 1",
-    key: 1,
-  },
-  {
-    src: CAROUSEL_BANNER_3,
-    altText: "Slide 2",
-    caption: "Slide 2",
-    key: 2,
-  },
-  {
-    src: CAROUSEL_BANNER_2,
-    altText: "Slide 3",
-    caption: "Slide 3",
-    key: 3,
-  },
-];
+import { carouselItems } from "./constant";
 
-function Example(args:any) {
+function CustomCarousel(args: any) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [animating, setAnimating] = useState(false);
 
   const next = () => {
     if (animating) return;
-    const nextIndex = activeIndex === items.length - 1 ? 0 : activeIndex + 1;
+    const nextIndex =
+      activeIndex === carouselItems.length - 1 ? 0 : activeIndex + 1;
     setActiveIndex(nextIndex);
   };
 
   const previous = () => {
     if (animating) return;
-    const nextIndex = activeIndex === 0 ? items.length - 1 : activeIndex - 1;
+    const nextIndex =
+      activeIndex === 0 ? carouselItems.length - 1 : activeIndex - 1;
     setActiveIndex(nextIndex);
   };
 
-  const goToIndex = (newIndex:number) => {
+  const goToIndex = (newIndex: number) => {
     if (animating) return;
     setActiveIndex(newIndex);
   };
 
-  const slides = items.map((item) => {
+  const slides = carouselItems.map((item) => {
     return (
       <CarouselItem
         onExiting={() => setAnimating(true)}
@@ -64,7 +42,7 @@ function Example(args:any) {
       >
         <img src={item.src} alt={item.altText} className={styles.carouselImg} />
         <CarouselCaption
-          captionText={item.caption}
+          captionText={item.altText}
           captionHeader={item.caption}
         />
       </CarouselItem>
@@ -79,7 +57,7 @@ function Example(args:any) {
       {...args}
     >
       <CarouselIndicators
-        items={items}
+        items={carouselItems}
         activeIndex={activeIndex}
         onClickHandler={goToIndex}
       />
@@ -98,4 +76,4 @@ function Example(args:any) {
   );
 }
 
-export default Example;
+export default CustomCarousel;
