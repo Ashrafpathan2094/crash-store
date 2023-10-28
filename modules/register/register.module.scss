@@ -46,6 +46,12 @@
     .form {
       text-align: center;
       padding: 30px;
+      .eye {
+        cursor: pointer;
+      }
+      .passwordLabel{
+        width: 50%;
+      }
       label {
         display: block;
         letter-spacing: 4px;
@@ -79,6 +85,13 @@
           text-align: center;
           transition: all 0.3s;
           width: 45%;
+        }
+
+        .passwordInput {
+          width: 90%;
+        }
+        .passwordInput:focus {
+          width: 100%;
         }
         input:focus {
           width: 60%;
@@ -228,12 +241,21 @@
     .formContainer {
       .form {
         padding: 0;
+        .eye {
+          // margin-right: 3%;
+        }
         label {
           input {
             width: 70%;
           }
           input:focus {
             width: 95%;
+          }
+          .passwordInput {
+            width: 60%;
+          }
+          .passwordInput:focus {
+            width: 80%;
           }
         }
       }

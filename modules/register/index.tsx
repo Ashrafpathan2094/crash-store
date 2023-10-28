@@ -1,16 +1,11 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import * as Yup from "yup";
+import { AUTHPAGE, PROFILE_ICON } from "../../constants/IMAGE_PATHS";
 import { RegisterUserReq } from "../../constants/types";
 import { RegisterUser } from "../../service/apiCalls";
-import {
-  AUTHPAGE,
-  EYE_CLOSE,
-  EYE_OPEN,
-  PROFILE_ICON,
-} from "../../constants/IMAGE_PATHS";
 import {
   ALREADY_MEMBER,
   EMAIL,
@@ -23,21 +18,18 @@ import {
   TERMS_CONDITION,
 } from "./constant";
 
+import { HOME_PATH_UI, LOGIN_PATH_UI } from "@/constants/uiPaths";
+import { EyeImg, passwordType } from "@/utils/utils";
 import { Loader } from "../../components/Loader";
 import styles from "./register.module.scss";
 const Register = () => {
   const [loading, setLoading] = useState(false);
 
-  const [passwordEye, setPasswordEye] = useState(true);
-  console.log("passwordEye", passwordEye);
+  const [passwordEye, setPasswordEye] = useState(false);
+  const [repeatPasswordEye, setRepeatPasswordEye] = useState(false);
 
   const router = useRouter();
 
-  const passowrdEyeClick = () => {
-    console.log("here");
-
-    setPasswordEye(!passwordEye);
-  };
   const formSubmit = async (reqBody: RegisterUserReq) => {
     reqBody.phone = reqBody.phone.toString();
     try {
@@ -56,10 +48,26 @@ const Register = () => {
     }
   };
 
+  const changePasswordEye = () => {
+    setPasswordEye(!passwordEye);
+  };
+
+  const changeRepPasswordEye = () => {
+    setRepeatPasswordEye(!repeatPasswordEye);
+  };
   const redirectLogin = () => {
     setLoading(true);
-    router.push("/signin");
+    router.push(LOGIN_PATH_UI);
   };
+  useEffect(() => {
+    setLoading(true);
+    const token = localStorage.getItem("crash-Token");
+    if (token) {
+      router.push(HOME_PATH_UI);
+    } else {
+      setLoading(false);
+    }
+  }, [router]);
   return (
     <>
       <div className={` ${styles.wrapper}`}>
@@ -154,30 +162,49 @@ const Register = () => {
                   </div>
                 </label>
 
-                <label>
-                  <Field name="password" type="text" />
-                  {/* <Image
-                    src={passwordEye ? EYE_OPEN : EYE_CLOSE}
-                    alt="profile-icon"
-                    width={30}
-                    height={30}
-                    className="ms-2"
-                    onClick={passowrdEyeClick}
-                  /> */}
-                  <div className={styles.labelText}>{PASSWORD}</div>
-                  <div className={styles.errorTxt}>
-                    <ErrorMessage name="password" />
-                  </div>
-                </label>
+                <div className="d-flex justify-content-center me-2">
+                  <label className={styles.passwordLabel}>
+                    <Field
+                      name="password"
+                      type={passwordType(passwordEye)}
+                      className={styles.passwordInput}
+                    />
+                    <div className={styles.labelText}>{PASSWORD}</div>
+                    <div className={styles.errorTxt}>
+                      <ErrorMessage name="password" />
+                    </div>
+                  </label>
+                  <Image
+                    src={EyeImg(passwordEye)}
+                    alt="Eye-Icon"
+                    height={20}
+                    width={20}
+                    className={`mt-5 ${styles.eye}`}
+                    onClick={changePasswordEye}
+                  />
+                </div>
 
-                <label>
-                  <Field name="repeat_password" type="text" />
-                  <div className={styles.labelText}>{REPEAT_PASSWORD}</div>
-                  <div className={styles.errorTxt}>
-                    <ErrorMessage name="repeat_password" />
-                  </div>
-                </label>
-
+                <div className="d-flex justify-content-center me-2">
+                  <label className={styles.passwordLabel}>
+                    <Field
+                      name="repeat_password"
+                      type={passwordType(repeatPasswordEye)}
+                      className={styles.passwordInput}
+                    />
+                    <div className={styles.labelText}>{REPEAT_PASSWORD}</div>
+                    <div className={styles.errorTxt}>
+                      <ErrorMessage name="repeat_password" />
+                    </div>
+                  </label>
+                  <Image
+                    src={EyeImg(repeatPasswordEye)}
+                    alt="Eye-Icon"
+                    height={20}
+                    width={20}
+                    className={`mt-5 ${styles.eye}`}
+                    onClick={changeRepPasswordEye}
+                  />
+                </div>
                 <div
                   className={`d-flex justify-content-evenly mt-5 ${styles.submitContainer}`}
                 >

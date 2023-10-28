@@ -1,12 +1,14 @@
 import { Loader } from "@/components/Loader";
 import { LoginUserReq } from "@/constants/types";
+import { HOME_PATH_UI, SIGNUP_PATH_UI } from "@/constants/uiPaths";
+import { EyeImg, passwordType } from "@/utils/utils";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import * as Yup from "yup";
-import { LoginUser } from "../../service/apiCalls";
 import { LOGIN_PAGE_BANNER } from "../../constants/IMAGE_PATHS";
+import { LoginUser } from "../../service/apiCalls";
 import {
   EMAIL,
   HEADING_TXT,
@@ -20,6 +22,8 @@ import styles from "./login.module.scss";
 const Login = () => {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
+  const [Eye, setEye] = useState(false);
+
   const formSubmit = async (reqBody: LoginUserReq) => {
     try {
       setLoading(true);
@@ -39,8 +43,21 @@ const Login = () => {
 
   const redirectRegister = () => {
     setLoading(true);
-    router.push("/signup");
+    router.push(SIGNUP_PATH_UI);
   };
+
+  const changeEye = () => {
+    setEye(!Eye);
+  };
+  useEffect(() => {
+    setLoading(true);
+    const token = localStorage.getItem("crash-Token");
+    if (token) {
+      router.push(HOME_PATH_UI);
+    } else {
+      setLoading(false);
+    }
+  }, [router]);
   return (
     <>
       {loading && <Loader />}
@@ -90,13 +107,27 @@ const Login = () => {
                   </div>
                 </label>
 
-                <label>
-                  <Field name="password" type="text" />
-                  <div className={styles.labelText}>{PASSWORD}</div>
-                  <div className={styles.errorTxt}>
-                    <ErrorMessage name="password" />
-                  </div>
-                </label>
+                <div className="d-flex justify-content-center">
+                  <label className={styles.passwordLabel}>
+                    <Field
+                      name="password"
+                      type={passwordType(Eye)}
+                      className={styles.passwordInput}
+                    />
+                    <div className={styles.labelText}>{PASSWORD}</div>
+                    <div className={styles.errorTxt}>
+                      <ErrorMessage name="password" />
+                    </div>
+                  </label>
+                  <Image
+                    src={EyeImg(Eye)}
+                    alt="Eye-Icon"
+                    height={20}
+                    width={20}
+                    className={`mt-5 ${styles.eye}`}
+                    onClick={changeEye}
+                  />
+                </div>
                 <div
                   className={`d-flex justify-content-evenly mt-5 ${styles.submitContainer}`}
                 >
