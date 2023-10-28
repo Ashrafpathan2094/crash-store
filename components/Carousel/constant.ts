@@ -8,13 +8,13 @@ export const carouselItems = [
   {
     src: CAROUSEL_BANNER_1,
     altText: "Best Deals on Selected Range of Headphones",
-    caption: "UpTo 50% Headphones",
+    caption: "UpTo 75% Off Headphones",
     key: 1,
   },
   {
     src: CAROUSEL_BANNER_3,
     altText: "Branded Clothing Lines on Sale",
-    caption: "Get Dicount on Select Cloths and Accessories",
+    caption: "Get Discount on Select Cloths and Accessories",
     key: 2,
   },
   {

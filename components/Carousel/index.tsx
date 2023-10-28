@@ -55,6 +55,7 @@ function CustomCarousel(args: any) {
       next={next}
       previous={previous}
       {...args}
+      pause="hover"
     >
       <CarouselIndicators
         items={carouselItems}
